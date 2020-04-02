@@ -1,9 +1,9 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
 
 body {
-    margin: 0 auto;
+    margin: auto;
     padding: 0 2em;
-    max-width: 50em;
+    max-width: 45em;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     color: #555;
 }
