@@ -12,7 +12,7 @@
     <h1>Clean and reusable web forms</h1>
     <p>The Therapy Forms Libary helps you write clean, reusable therapy forms that work on a variety of devices, with core functionality such as saving data already built in</p>
     <h2>Your first lines of code</h2>
-    <p>Copy and paste the code below to view your first therapy form, and have a play around with the various values. Head to the docs when you want to learn more.</p>
+    <p>Copy and paste the code below to view your first therapy form, and have a play around with the various values.</p>
     <pre><code class="language-js">let a = document.getElementById("forminsert");
     
 let f = new Form(a, {
@@ -27,28 +27,10 @@ let f = new Form(a, {
     },
     {
         question: {
-            text: "What time did this happen?"
+            text: "How did this make you feel?"
         },
         answer: {
             type: "time"
-        }
-    },
-    {
-        question: {
-            text: "Where are you? Who are you with? What is happening?"
-        },
-        answer: {
-            type: "textbox",
-            default: "Your answer..."
-        }
-    },
-    {
-        question: {
-            text: "What is going through your mind?"
-        },
-        answer: {
-            type: "textbox",
-            default: "Your answer..."
         }
     }]
 });</code></pre>
