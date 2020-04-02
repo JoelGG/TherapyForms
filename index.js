@@ -24,12 +24,14 @@ class Form {
         let save = this.buttonFactory("save", this.saveEntries);
         let clear = this.buttonFactory("clear", this.clearData.bind(this));
         let n = this.buttonFactory("new", this.newEntry.bind(this));
+        let download = this.buttonFactory("download", this.downloadPDF.bind(this));
         this.inputStage.appendChild(save);
         this.inputStage.appendChild(clear);
         this.inputStage.appendChild(n);
+        this.inputStage.appendChild(download);
     }
 
-    buttonFactory(value, func, ) {
+    buttonFactory(value, func) {
         let b = document.createElement("input");
         b.setAttribute("type", "button");
         b.value = value;
@@ -172,6 +174,30 @@ class Form {
         }
         return x;
         
+    }
+
+    downloadPDF() {
+        this.saveEntries();
+
+        let data = JSON.parse(localStorage.getItem("Activity Scores"));
+        console.log(data.length);
+
+        let offset = 0;
+
+        let doc = new jsPDF();
+
+        for (let i = 0; i < data.length; i++) {
+            doc.text(20, offset += 20, "Entry " + (i + 1));
+            for (let j = 0; j < data[i].length; j++) {
+                doc.text(20, offset += 10, this.content.sections[j].question.text);
+                doc.text(20, offset += 10, data[i][j]);
+            }
+            if (offset > 150) {
+                doc.addPage();
+                offset = 10;
+            }
+        }
+        doc.save("Download.pdf");
     }
 
 }
