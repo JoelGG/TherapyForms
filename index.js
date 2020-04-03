@@ -26,6 +26,13 @@ class Form {
         let n = this.buttonFactory("new", this.newEntry.bind(this));
         let download = this.buttonFactory("download", this.downloadPDF.bind(this));
 
+        let email = this.sendEmail();
+        let emailBtn = document.createElement("input");
+        emailBtn.setAttribute("type", "button");
+        emailBtn.value = "email";
+        email.appendChild(emailBtn);
+        
+
         //need to use different methodology here as attaching using .onclick does not work for window.print
         let print = document.createElement("input");
         print.setAttribute("type", "button");
@@ -36,6 +43,7 @@ class Form {
         this.inputStage.appendChild(clear);
         this.inputStage.appendChild(n);
         this.inputStage.appendChild(download);
+        this.inputStage.appendChild(email);
         this.inputStage.appendChild(print);
     }
 
@@ -188,7 +196,6 @@ class Form {
         this.saveEntries();
 
         let data = JSON.parse(localStorage.getItem("Activity Scores"));
-        console.log(data.length);
 
         let offset = 0;
 
@@ -206,6 +213,28 @@ class Form {
             }
         }
         doc.save("Download.pdf");
+    }
+
+    sendEmail() {
+        this.saveEntries();
+
+        let data = JSON.parse(localStorage.getItem("Activity Scores"));
+
+        let mailLink = document.createElement("a");
+        let linkParam = "mailto:?subject=Activity%20Tracker&body=";
+        
+        for (let i = 0; i < data.length; i++) {
+            linkParam += "Entry " + (i + 1) + "%0D%0A%0D%0A";
+            for (let j = 0; j < data[i].length; j++) {
+                linkParam += this.content.sections[j].question.text + "%0D%0A";
+                linkParam += data[i][j] + "%0D%0A%0D%0A";
+            }
+            linkParam += "%0D%0A";
+        }
+
+        mailLink.setAttribute("href", linkParam);
+
+        return mailLink;
     }
 
 }
