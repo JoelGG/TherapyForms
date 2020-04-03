@@ -1,5 +1,5 @@
 class Form {
-    constructor(stage, content) {
+    constructor(name, stage, content) {
         this.stage = stage;
         if (content.sections != null) {
             this.content = content;
@@ -7,12 +7,14 @@ class Form {
             throw new console.error("incorrect content passed to form object");
         }
 
+        this.name = name;
+
         this.entriesStage = document.createElement("div");
         this.entriesStage.setAttribute("div","entriesStage")
         stage.appendChild(this.entriesStage);
 
         this.inputStage = document.createElement("div");
-        this.inputStage.setAttribute("div","inputStage")
+        this.inputStage.setAttribute("div","inputStage");
         stage.appendChild(this.inputStage);
 
         this.loadEntries();
@@ -25,12 +27,7 @@ class Form {
         let clear = this.buttonFactory("clear", this.clearData.bind(this));
         let n = this.buttonFactory("new", this.newEntry.bind(this));
         let download = this.buttonFactory("download", this.downloadPDF.bind(this));
-
-        let email = this.sendEmail();
-        let emailBtn = document.createElement("input");
-        emailBtn.setAttribute("type", "button");
-        emailBtn.value = "email";
-        email.appendChild(emailBtn);
+        let email = this.buttonFactory("email", this.sendEmail.bind(this));
         
 
         //need to use different methodology here as attaching using .onclick does not work for window.print
@@ -220,8 +217,7 @@ class Form {
 
         let data = JSON.parse(localStorage.getItem("Activity Scores"));
 
-        let mailLink = document.createElement("a");
-        let linkParam = "mailto:?subject=Activity%20Tracker&body=";
+        let linkParam = "mailto:?subject=" + this.name + "&body=";
         
         for (let i = 0; i < data.length; i++) {
             linkParam += "Entry " + (i + 1) + "%0D%0A%0D%0A";
@@ -232,9 +228,7 @@ class Form {
             linkParam += "%0D%0A";
         }
 
-        mailLink.setAttribute("href", linkParam);
-
-        return mailLink;
+        window.location = linkParam;
     }
 
 }
@@ -245,7 +239,7 @@ class Form {
 
 let a = document.getElementById("forminsert");
 
-let f = new Form(a, {
+let f = new Form("Feelings Log",a, {
     type: "log",
     sections: [{
         question: {
