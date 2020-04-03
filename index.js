@@ -25,10 +25,18 @@ class Form {
         let clear = this.buttonFactory("clear", this.clearData.bind(this));
         let n = this.buttonFactory("new", this.newEntry.bind(this));
         let download = this.buttonFactory("download", this.downloadPDF.bind(this));
+
+        //need to use different methodology here as attaching using .onclick does not work for window.print
+        let print = document.createElement("input");
+        print.setAttribute("type", "button");
+        print.setAttribute("onClick", "window.print()");
+        print.value = "print";
+
         this.inputStage.appendChild(save);
         this.inputStage.appendChild(clear);
         this.inputStage.appendChild(n);
         this.inputStage.appendChild(download);
+        this.inputStage.appendChild(print);
     }
 
     buttonFactory(value, func) {
