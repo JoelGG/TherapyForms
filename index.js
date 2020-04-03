@@ -123,7 +123,7 @@ class Form {
     }
 
     loadEntries() {
-        let data = JSON.parse(localStorage.getItem("Activity Scores"));
+        let data = JSON.parse(localStorage.getItem("Therapy Forms Online Values"));
         if (data !== null) {
             for (let i = 0; i < data.length; i++) {
                 this.renderEntry(i,data[i]);
@@ -156,11 +156,11 @@ class Form {
             //appends a list of data to data variable
             data[i] = ([...segments].map(seg => [...seg.children].filter(x => x.classList.contains("entryField"))[0]).map(y => y.value));
         }
-        localStorage.setItem("Activity Scores", JSON.stringify(data));
+        localStorage.setItem("Therapy Forms Online Values", JSON.stringify(data));
     }
 
     clearData() {
-        localStorage.setItem("Activity Scores", null);
+        localStorage.setItem("Therapy Forms Online Values", null);
         this.entriesStage.innerHTML = '';
         this.renderEntry(0, []);
     }
@@ -192,7 +192,7 @@ class Form {
     downloadPDF() {
         this.saveEntries();
 
-        let data = JSON.parse(localStorage.getItem("Activity Scores"));
+        let data = JSON.parse(localStorage.getItem("Therapy Forms Online Values"));
 
         let offset = 0;
 
@@ -215,7 +215,7 @@ class Form {
     sendEmail() {
         this.saveEntries();
 
-        let data = JSON.parse(localStorage.getItem("Activity Scores"));
+        let data = JSON.parse(localStorage.getItem("TherapyFormsJSData"));
 
         let linkParam = "mailto:?subject=" + this.name + "&body=";
         
