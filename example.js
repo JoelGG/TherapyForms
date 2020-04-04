@@ -232,3 +232,173 @@ class Form {
     }
 
 }
+
+
+
+
+
+let a = document.getElementById("forminsert");
+
+let f = new Form("Feelings Log",a, {
+    type: "log",
+    sections: [{
+        question: {
+            text: "What date did this happen?"
+        },
+        answer : {
+            type: "date"
+        }
+    },
+    {
+        question: {
+            text: "What time did this happen?"
+        },
+        answer: {
+            type: "time"
+        }
+    },
+    {
+        question: {
+            text: "Where are you? Who are you with? What is happening?"
+        },
+        answer: {
+            type: "textbox",
+            default: "Your answer..."
+        }
+    },
+    {
+        question: {
+            text: "What is going through your mind?"
+        },
+        answer: {
+            type: "textbox",
+            default: "Your answer..."
+        }
+    },
+    {
+        question: {
+            text: "What is the strongest emotion you can feel right now?"
+        },
+        answer: {
+            type: "dropdown",
+            delements: [
+                {
+                    type: "egroup",
+                    text: "Anger and disgust",
+                    delements: [
+                        {
+                            type: "element",
+                            text: "Anger",
+                            active: true
+                        },
+                        {
+                            type: "element",
+                            text: "Annoyance",
+                            active: true
+                        },
+                        {
+                            type: "element",
+                            text: "Contempt",
+                            active: true
+                        },
+                        {
+                            type: "element",
+                            text: "Disgust",
+                            active: true
+                        },
+                        {
+                            type: "element",
+                            text: "Irritation",
+                            active: true
+                        },
+                        {
+                            type: "element",
+                            text: "Jealousy",
+                            active: true
+                        }
+                    ]
+                },
+                {
+                    type: "egroup",
+                    text: "Fear and anxiety",
+                    delements: [
+                        {
+                            type: "element",
+                            text: "Anxiety",
+                            active: true
+                        },
+                        {
+                            type: "element",
+                            text: "Doubt",
+                            active: true
+                        },
+                        {
+                            type: "element",
+                            text: "Fear",
+                            active: true
+                        },
+                        {
+                            type: "element",
+                            text: "Helplessness",
+                            active: true
+                        },
+                        {
+                            type: "element",
+                            text: "Powerlessness",
+                            active: true
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        question: {
+            text: "How strong is that feeling, where 1 = very weak and 10 = very strong?"
+        },
+        answer: {
+            type: "dropdown",
+            delements: [{
+                type: "element",
+                text: "1",
+                active: true
+            },{
+                type: "element",
+                text: "2",
+                active: true
+            },{
+                type: "element",
+                text: "3",
+                active: true
+            },{
+                type: "element",
+                text: "4",
+                active: true
+            },{
+                type: "element",
+                text: "5",
+                active: true
+            },{
+                type: "element",
+                text: "6",
+                active: true
+            },{
+                type: "element",
+                text: "7",
+                active: true
+            },{
+                type: "element",
+                text: "8",
+                active: true
+            },{
+                type: "element",
+                text: "9",
+                active: true
+            },{
+                type: "element",
+                text: "10",
+                active: true
+            }]
+        }
+    }]
+});
