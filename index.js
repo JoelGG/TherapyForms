@@ -36,9 +36,9 @@ class Form {
         print.setAttribute("onClick", "window.print()");
         print.value = "print";
 
+        this.inputStage.appendChild(n);
         this.inputStage.appendChild(save);
         this.inputStage.appendChild(clear);
-        this.inputStage.appendChild(n);
         this.inputStage.appendChild(download);
         this.inputStage.appendChild(email);
         this.inputStage.appendChild(print);
